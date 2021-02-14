@@ -42,7 +42,7 @@ function preload(){
 
 
 function setup() {
-  createCanvas(600,275);
+  createCanvas(1200,800);
   
    
 //creating the ground
@@ -91,16 +91,14 @@ function draw() {
     textFont("Comic Sans MS");
     textSize(15);
   
-  //making the cyclist jump when the space is pressed
- if(keyCode===32){
-  cyclist.velocityY= -10;
-}
+ 
   
 //making the functions to be excecuted when gameState is PLAY
   if(gameState===PLAY) {
     
     
-    
+    cyclist.x=mouseX;
+    cyclist.y=mouseY;
 //making gameover,play,starting and restart invisible
     gameOver.visible=false;
     restart.visible=false;
@@ -115,7 +113,8 @@ function draw() {
         ground.x =ground.width/2;
       }
   
-
+  //adding gravity
+  cyclist.velocityY=cyclist.velocityY+0.5;
   
   //spawning the obstacles
   spawnObstacles();
@@ -174,8 +173,7 @@ function draw() {
     
     
   }
-  //adding gravity
-  cyclist.velocityY=cyclist.velocityY+0.8;
+ 
   
   //colliding the runner with the invisibleGround
   cyclist.collide(invisibleGround);
@@ -244,6 +242,7 @@ if(frameCount%222===0){
 
    } 
 }
+
 
 //spawnPrecautions function
 function spawnPrecaution(){
